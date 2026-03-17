@@ -4,12 +4,14 @@ import { useState } from "react"
 function App() {
 
   const [expense,setExpense] = useState(0);
-   const [notes,setNotes] = useState('');
+   const [notes,setNotes] = useState([]);
    const [name, setName] = useState('');
    const [amount, setAmount] = useState(0);
 
    function addButton(){
-   setNotes(name+ "-" +amount);
+   let str= name+"-" + amount;
+setNotes([...notes, str])
+   
    setExpense(parseInt(amount)+expense);
    }
 
@@ -33,7 +35,18 @@ function App() {
 </div>
 
 <div className="w-[450px] h-[220px] bg-gray-500 rounded-xl border-2 border-blue-400 flex flex-col p-10">
-{notes}
+ {
+  notes.map((n,index) =>(
+    
+    <li
+      key={index}>
+      
+      {n}
+    </li>
+  
+  )
+  )
+ }
 </div>
 
   </div>
